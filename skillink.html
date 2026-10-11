@@ -1,0 +1,936 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkillLink - Agence Digitale</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            blue: '#0084FF',
+                            dark: '#0A0F1D',
+                            card: '#141B2D',
+                            silver: '#E2E8F0',
+                            accent: '#00F0FF'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .gradient-text {
+            background: linear-gradient(135deg, #FFF 30%, #0084FF 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .logo-gradient {
+            background: linear-gradient(135deg, #E2E8F0 40%, #0084FF 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+</head>
+<body class="bg-brand-dark text-slate-300 font-sans antialiased min-h-screen">
+
+    <!-- Top Navigation Bar -->
+    <header class="sticky top-0 z-50 bg-brand-dark/95 backdrop-blur-md border-b border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Logo -->
+            <div class="flex items-center space-x-3 flex-shrink-0">
+                <div class="w-10 h-10 rounded-full border-2 border-brand-blue flex items-center justify-center font-bold text-xl text-brand-blue shadow-lg shadow-brand-blue/20">S</div>
+                <span class="text-2xl font-bold tracking-wider logo-gradient">SKLLK <span class="text-xs block text-brand-blue font-medium tracking-normal -mt-1">SkillLink</span></span>
+            </div>
+            <!-- Nav Desktop -->
+            <nav class="hidden md:flex space-x-8 text-sm font-semibold tracking-wide">
+                <a href="#accueil" class="text-white hover:text-brand-blue transition-colors">Accueil</a>
+                <a href="#services" class="text-slate-400 hover:text-white transition-colors">Nos Services</a>
+                <a href="#apropos" class="text-slate-400 hover:text-white transition-colors">Pourquoi Nous ?</a>
+                <a href="#projets" class="text-slate-400 hover:text-white transition-colors">Nos Projets</a>
+                <a href="#contact" class="text-slate-400 hover:text-white transition-colors">Contact</a>
+            </nav>
+            <!-- Bouton WhatsApp + Hamburger -->
+            <div class="flex items-center gap-3">
+                <a href="https://wa.me/22999950409?text=Bonjour%20SkillLink,%20je%20souhaite%20en%20savoir%20plus%20sur%20vos%20services%20digitaux." target="_blank" class="hidden md:inline-flex bg-brand-blue hover:bg-blue-600 text-white font-bold px-5 py-2.5 rounded-xl transition-all duration-300 shadow-lg shadow-brand-blue/20 text-sm items-center gap-2">
+                    <i class="fab fa-whatsapp text-lg"></i> Contact Direct
+                </a>
+                <button id="menu-toggle" onclick="toggleMenu()" class="md:hidden flex flex-col justify-center items-center w-10 h-10 rounded-xl border border-slate-700 bg-brand-card gap-1.5 hover:border-brand-blue transition-colors">
+                    <span class="hbar block w-5 h-0.5 bg-white transition-all duration-300"></span>
+                    <span class="hbar block w-5 h-0.5 bg-white transition-all duration-300"></span>
+                    <span class="hbar block w-5 h-0.5 bg-white transition-all duration-300"></span>
+                </button>
+            </div>
+        </div>
+        <!-- Menu Mobile -->
+        <div id="mobile-menu" class="md:hidden hidden border-t border-slate-800 bg-brand-dark/98 backdrop-blur-md">
+            <nav class="flex flex-col px-4 py-4 space-y-1">
+                <a href="#accueil" onclick="fermerMenu()" class="flex items-center gap-3 px-4 py-3 rounded-xl text-white font-semibold text-sm hover:bg-slate-800 transition-colors"><i class="fas fa-home text-brand-blue w-4"></i> Accueil</a>
+                <a href="#services" onclick="fermerMenu()" class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-300 font-semibold text-sm hover:bg-slate-800 hover:text-white transition-colors"><i class="fas fa-briefcase text-brand-blue w-4"></i> Nos Services</a>
+                <a href="#apropos" onclick="fermerMenu()" class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-300 font-semibold text-sm hover:bg-slate-800 hover:text-white transition-colors"><i class="fas fa-star text-brand-blue w-4"></i> Pourquoi Nous ?</a>
+                <a href="#projets" onclick="fermerMenu()" class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-300 font-semibold text-sm hover:bg-slate-800 hover:text-white transition-colors"><i class="fas fa-folder-open text-brand-blue w-4"></i> Nos Projets</a>
+                <a href="#contact" onclick="fermerMenu()" class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-300 font-semibold text-sm hover:bg-slate-800 hover:text-white transition-colors"><i class="fas fa-envelope text-brand-blue w-4"></i> Contact</a>
+                <div class="pt-2">
+                    <a href="https://wa.me/22999950409?text=Bonjour%20SkillLink,%20je%20souhaite%20en%20savoir%20plus%20sur%20vos%20services%20digitaux." target="_blank" onclick="fermerMenu()" class="w-full bg-brand-blue hover:bg-blue-600 text-white font-bold py-3 px-4 rounded-xl transition-all inline-flex items-center justify-center gap-2 text-sm">
+                        <i class="fab fa-whatsapp text-lg"></i> Contact Direct WhatsApp
+                    </a>
+                </div>
+            </nav>
+        </div>
+    </header>
+    <script>
+        function toggleMenu() {
+            const menu = document.getElementById('mobile-menu');
+            const bars = document.querySelectorAll('.hbar');
+            const ouvert = !menu.classList.contains('hidden');
+            if (ouvert) {
+                menu.classList.add('hidden');
+                bars[0].style.transform = ''; bars[1].style.opacity = '1'; bars[2].style.transform = '';
+            } else {
+                menu.classList.remove('hidden');
+                bars[0].style.transform = 'translateY(8px) rotate(45deg)';
+                bars[1].style.opacity = '0';
+                bars[2].style.transform = 'translateY(-8px) rotate(-45deg)';
+            }
+        }
+        function fermerMenu() {
+            const menu = document.getElementById('mobile-menu');
+            const bars = document.querySelectorAll('.hbar');
+            menu.classList.add('hidden');
+            bars[0].style.transform = ''; bars[1].style.opacity = '1'; bars[2].style.transform = '';
+        }
+    </script>
+
+    <!-- Hero Section -->
+    <section id="accueil" class="relative py-20 overflow-hidden border-b border-slate-900">
+        <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(0,132,255,0.12),transparent_45%)]"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+            <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold bg-brand-blue/10 text-brand-blue border border-brand-blue/20 mb-6 tracking-wider uppercase">
+                <span class="w-2 h-2 rounded-full bg-brand-accent animate-pulse"></span> L'excellence digitale à votre portée
+            </span>
+            <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight text-white mb-6 max-w-4xl mx-auto leading-tight">
+                <span class="gradient-text">Ton Need, Notre Mission.</span>
+            </h1>
+            <p class="text-lg sm:text-xl text-slate-400 max-w-2xl mx-auto mb-10 leading-relaxed">
+                SkillLink propulse vos projets professionnels avec des solutions d'experts : Bureautique, Design, Développement, Audiovisuel, Marketing et Sérigraphie.
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
+                <a href="#services" class="w-full sm:w-auto bg-slate-800 hover:bg-slate-700 text-white font-bold px-8 py-4 rounded-xl transition-all border border-slate-700 text-center">
+                    Découvrir nos services
+                </a>
+                <a href="https://wa.me/22999950409?text=Bonjour%20SkillLink,%20je%20souhaite%20lancer%20un%20projet%20avec%20votre%20agence." target="_blank" class="w-full sm:w-auto bg-brand-blue hover:bg-blue-600 text-white font-bold px-8 py-4 rounded-xl transition-all duration-300 shadow-xl shadow-brand-blue/25 text-center flex items-center justify-center gap-2">
+                    <i class="fab fa-whatsapp text-xl"></i> Discuter sur WhatsApp
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+            <h2 class="text-3xl font-bold text-white tracking-tight sm:text-4xl mb-4">Nos Domaines d'Expertise</h2>
+            <p class="text-slate-400 max-w-xl mx-auto">Chaque besoin est unique, notre équipe dédiée vous accompagne avec rigueur et créativité.</p>
+        </div>
+
+        <div class="space-y-16">
+            
+            <!-- SERVICE 1: BUREAUTIQUE & ÉTUDES -->
+            <div class="bg-brand-card rounded-2xl border border-slate-800 p-6 sm:p-8 shadow-xl">
+                <div class="lg:flex lg:gap-8 items-start">
+                    <div class="lg:w-1/3 mb-6 lg:mb-0">
+                        <div class="w-12 h-12 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-brand-blue text-xl mb-4">
+                            <i class="fas fa-briefcase"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-3">Bureautique &amp; Études</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed mb-6">Confiez-nous la rédaction, la mise en conformité et l'optimisation de vos documents critiques universitaires ou corporatifs.</p>
+                        <ul class="space-y-2 text-sm text-slate-300 mb-6 grid grid-cols-2 lg:grid-cols-1 gap-2">
+                            <li class="flex items-center gap-2"><i class="fas fa-check text-brand-blue text-xs"></i> Création de CV</li>
+                            <li class="flex items-center gap-2"><i class="fas fa-check text-brand-blue text-xs"></i> Lettres administratives</li>
+                            <li class="flex items-center gap-2"><i class="fas fa-check text-brand-blue text-xs"></i> Mémoires universitaires</li>
+                            <li class="flex items-center gap-2"><i class="fas fa-check text-brand-blue text-xs"></i> Rapports de stage</li>
+                            <li class="flex items-center gap-2"><i class="fas fa-check text-brand-blue text-xs"></i> Saisie de documents</li>
+                            <li class="flex items-center gap-2"><i class="fas fa-check text-brand-blue text-xs"></i> Correction &amp; Traduction</li>
+                        </ul>
+                        <a href="https://wa.me/22999950409?text=Bonjour%20SkillLink,%20je%20souhaite%20commander%20un%20service%20de%20cr%C3%A9ation%20de%20CV%20professionnel." target="_blank" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-3 px-4 rounded-xl transition-colors inline-flex items-center justify-center gap-2 text-sm shadow-lg shadow-emerald-900/20">
+                            <i class="fab fa-whatsapp text-lg"></i> Commander sur WhatsApp
+                        </a>
+                    </div>
+                    <!-- Photo Gallery -->
+                    <div class="lg:w-2/3">
+                        <span class="text-xs font-semibold uppercase tracking-wider text-slate-500 block mb-3">Galerie Réalisations (5-10 images pro)</span>
+                        <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                            <div class="relative overflow-hidden rounded-xl aspect-[4/3] bg-slate-900 border border-slate-800 group">
+                                <img src="https://images.unsplash.com/photo-1586281380349-632531db7ed4?q=80&w=400&auto=format&fit=crop" alt="CV Moderne" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-3">
+                                    <p class="text-xs font-semibold text-white">Création de CV Pro</p>
+                                </div>
+                            </div>
+                            <div class="relative overflow-hidden rounded-xl aspect-[4/3] bg-slate-900 border border-slate-800 group">
+                                <img src="https://images.unsplash.com/photo-1455390582262-044cdead277a?q=80&w=400&auto=format&fit=crop" alt="Rédaction" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-3">
+                                    <p class="text-xs font-semibold text-white">Rédaction Administrative</p>
+                                </div>
+                            </div>
+                            <div class="relative overflow-hidden rounded-xl aspect-[4/3] bg-slate-900 border border-slate-800 group">
+                                <img src="https://images.unsplash.com/photo-1506880018603-83d5b814b5a6?q=80&w=400&auto=format&fit=crop" alt="Mémoires" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-3">
+                                    <p class="text-xs font-semibold text-white">Suivi Mémoires &amp; Thèses</p>
+                                </div>
+                            </div>
+                            <div class="relative overflow-hidden rounded-xl aspect-[4/3] bg-slate-900 border border-slate-800 group">
+                                <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?q=80&w=400&auto=format&fit=crop" alt="Correction" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-3">
+                                    <p class="text-xs font-semibold text-white">Correction de documents</p>
+                                </div>
+                            </div>
+                            <div class="relative overflow-hidden rounded-xl aspect-[4/3] bg-slate-900 border border-slate-800 group">
+                                <img src="https://images.unsplash.com/photo-1544717305-2782549b5136?q=80&w=400&auto=format&fit=crop" alt="Rapports" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-3">
+                                    <p class="text-xs font-semibold text-white">Rapport de Stage structuré</p>
+                                </div>
+                            </div>
+                            <div class="relative overflow-hidden rounded-xl aspect-[4/3] bg-slate-900 border border-slate-800 group">
+                                <img src="https://images.unsplash.com/photo-1457369804613-52c61a468e7d?q=80&w=400&auto=format&fit=crop" alt="Saisie" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-3">
+                                    <p class="text-xs font-semibold text-white">Saisie de documents</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SERVICE 2: DESIGN GRAPHIQUE -->
+            <div class="bg-brand-card rounded-2xl border border-slate-800 p-6 sm:p-8 shadow-xl">
+                <div class="lg:flex lg:gap-8 items-start">
+                    <div class="lg:w-1/3 mb-6 lg:mb-0">
+                        <div class="w-12 h-12 rounded-xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center text-purple-400 text-xl mb-4">
+                            <i class="fas fa-paint-brush"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-3">Design Graphique</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed mb-6">Impressionnez votre audience avec une identité visuelle percutante, moderne et entièrement sur-mesure.</p>
+                        <ul class="space-y-2 text-sm text-slate-300 mb-6 grid grid-cols-2 lg:grid-cols-1 gap-2">
+                            <li class="flex items-center gap-2"><i class="fas fa-check text-purple-400 text-xs"></i> Logos professionnels</li>
+                            <li class="flex items-center gap-2"><i class="fas fa-check text-purple-400 text-xs"></i> Flyers</li>
+                            <li class="flex items-center gap-2"><i class="fas fa-check text-purple-400 text-xs"></i> Affiches publicitaires</li>
+                            <li class="flex items-center gap-2"><i class="fas fa-check text-purple-400 text-xs"></i> Cartes de visite</li>
+                            <li class="flex items-center gap-2"><i class="fas fa-check text-purple-400 text-xs"></i> Branding complet</li>
+                        </ul>
+                        <a href="https://wa.me/22999950409?text=Bonjour%20SkillLink,%20je%20souhaite%20commander%20un%20service%20de%20logos%20professionnels%20et%20design%20graphique." target="_blank" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-3 px-4 rounded-xl transition-colors inline-flex items-center justify-center gap-2 text-sm shadow-lg shadow-emerald-900/20">
+                            <i class="fab fa-whatsapp text-lg"></i> Commander sur WhatsApp
+                        </a>
+                    </div>
+                    <!-- Photo Gallery -->
+                    <div class="lg:w-2/3">
+                        <span class="text-xs font-semibold uppercase tracking-wider text-slate-500 block mb-3">Galerie Réalisations (5-10 images pro)</span>
+                        <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                            <div class="relative overflow-hidden rounded-xl aspect-[4/3] bg-slate-900 border border-slate-800 group">
+                                <img src="https://images.unsplash.com/photo-1626785774573-4b799315345d?q=80&w=400&auto=format&fit=crop" alt="Logo Design" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-3">
+                                    <p class="text-xs font-semibold text-white">Logos Professionnels</p>
+                                </div>
+                            </div>
+                            <div class="relative overflow-hidden rounded-xl aspect-[4/3] bg-slate-900 border border-slate-800 group">
+                                <img src="https://images.unsplash.com/photo-1531403009284-440f080d1e12?q=80&w=400&auto=format&fit=crop" alt="Flyers" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-3">
+                                    <p class="text-xs font-semibold text-white">Flyers &amp; Communication</p>
+                                </div>
+                            </div>
+                            <div class="relative overflow-hidden rounded-xl aspect-[4/3] bg-slate-900 border border-slate-800 group">
+                                <img src="https://images.unsplash.com/photo-1509343256512-d77a5cb3791b?q=80&w=400&auto=format&fit=crop" alt="Branding" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-3">
+                                    <p class="text-xs font-semibold text-white">Branding Complet</p>
+                                </div>
+                            </div>
+                            <div class="relative overflow-hidden rounded-xl aspect-[4/3] bg-slate-900 border border-slate-800 group">
+                                <img src="https://images.unsplash.com/photo-1589330694653-ded6df53f6ee?q=80&w=400&auto=format&fit=crop" alt="Business Cards" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-3">
+                                    <p class="text-xs font-semibold text-white">Cartes de Visite</p>
+                                </div>
+                            </div>
+                            <div class="relative overflow-hidden rounded-xl aspect-[4/3] bg-slate-900 border border-slate-800 group">
+                                <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=400&auto=format&fit=crop" alt="Affiches" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-3">
+                                    <p class="text-xs font-semibold text-white">Affiches Publicitaires</p>
+                                </div>
+                            </div>
+                            <div class="relative overflow-hidden rounded-xl aspect-[4/3] bg-slate-900 border border-slate-800 group">
+                                <img src="https://images.unsplash.com/photo-1626785774625-ddc7c8241314?q=80&w=400&auto=format&fit=crop" alt="Charte Graphique" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-3">
+                                    <p class="text-xs font-semibold text-white">Identité Visuelle unique</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SERVICE 3: DÉVELOPPEMENT DIGITAL -->
+            <div class="bg-brand-card rounded-2xl border border-slate-800 p-6 sm:p-8 shadow-xl">
+                <div class="lg:flex lg:gap-8 items-start">
+                    <div class="lg:w-1/3 mb-6 lg:mb-0">
+                        <div class="w-12 h-12 rounded-xl bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center text-cyan-400 text-xl mb-4">
+                            <i class="fas fa-code"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-3">Développement Digital</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed mb-6">Nous concevons des sites web et des applications robustes, ultra-rapides et parfaitement adaptés au mobile.</p>
+                        <ul class="space-y-2 text-sm text-slate-300 mb-6 grid grid-cols-2 lg:grid-cols-1 gap-2">
+                            <li class="flex items-center gap-2"><i class="fas fa-check text-cyan-400 text-xs"></i> Sites web vitrines</li>
+                            <li class="flex items-center gap-2"><i class="fas fa-check text-cyan-400 text-xs"></i> Sites e-commerce</li>
+                            <li class="flex items-center gap-2"><i class="fas fa-check text-cyan-400 text-xs"></i> Applications web</li>
+                            <li class="flex items-center gap-2"><i class="fas fa-check text-cyan-400 text-xs"></i> Applications mobiles</li>
+                            <li class="flex items-center gap-2"><i class="fas fa-check text-cyan-400 text-xs"></i> Maintenance de sites</li>
+                        </ul>
+                        <a href="https://wa.me/22999950409?text=Bonjour%20SkillLink,%20je%20souhaite%20commander%20un%20service%20de%20d%C3%A9veloppement%20de%20sites%20web%20vitrines%20ou%20e-commerce." target="_blank" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-3 px-4 rounded-xl transition-colors inline-flex items-center justify-center gap-2 text-sm shadow-lg shadow-emerald-900/20">
+                            <i class="fab fa-whatsapp text-lg"></i> Commander sur WhatsApp
+                        </a>
+                    </div>
+                    <!-- Photo Gallery -->
+                    <div class="lg:w-2/3">
+                        <span class="text-xs font-semibold uppercase tracking-wider text-slate-500 block mb-3">Galerie Réalisations (5-10 images pro)</span>
+                        <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                            <div class="relative overflow-hidden rounded-xl aspect-[4/3] bg-slate-900 border border-slate-800 group">
+                                <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=400&auto=format&fit=crop" alt="Web Development" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-3">
+                                    <p class="text-xs font-semibold text-white">Sites Web Vitrines</p>
+                                </div>
+                            </div>
+                            <div class="relative overflow-hidden rounded-xl aspect-[4/3] bg-slate-900 border border-slate-800 group">
+                                <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=400&auto=format&fit=crop" alt="E-commerce" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-3">
+                                    <p class="text-xs font-semibold text-white">Boutiques E-commerce</p>
+                                </div>
+                            </div>
+                            <div class="relative overflow-hidden rounded-xl aspect-[4/3] bg-slate-900 border border-slate-800 group">
+                                <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=400&auto=format&fit=crop" alt="Clean Code" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-3">
+                                    <p class="text-xs font-semibold text-white">Applications Web</p>
+                                </div>
+                            </div>
+                            <div class="relative overflow-hidden rounded-xl aspect-[4/3] bg-slate-900 border border-slate-800 group">
+                                <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?q=80&w=400&auto=format&fit=crop" alt="Mobile UI" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-3">
+                                    <p class="text-xs font-semibold text-white">Applications Mobiles</p>
+                                </div>
+                            </div>
+                            <div class="relative overflow-hidden rounded-xl aspect-[4/3] bg-slate-900 border border-slate-800 group">
+                                <img src="https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?q=80&w=400&auto=format&fit=crop" alt="Dashboard" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-3">
+                                    <p class="text-xs font-semibold text-white">Maintenance &amp; Suivi</p>
+                                </div>
+                            </div>
+                            <div class="relative overflow-hidden rounded-xl aspect-[4/3] bg-slate-900 border border-slate-800 group">
+                                <img src="https://images.unsplash.com/photo-1600132806370-bf17e65e942f?q=80&w=400&auto=format&fit=crop" alt="Responsive" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-3">
+                                    <p class="text-xs font-semibold text-white">Design Responsive</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SERVICE 4: AUDIOVISUEL -->
+            <div class="bg-brand-card rounded-2xl border border-slate-800 p-6 sm:p-8 shadow-xl">
+                <div class="lg:flex lg:gap-8 items-start">
+                    <div class="lg:w-1/3 mb-6 lg:mb-0">
+                        <div class="w-12 h-12 rounded-xl bg-orange-500/10 border border-orange-500/20 flex items-center justify-center text-orange-400 text-xl mb-4">
+                            <i class="fas fa-video"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-3">Audiovisuel</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed mb-6">Captez immédiatement l'attention sur TikTok, YouTube et Instagram avec des vidéos rythmées et ultra-professionnelles.</p>
+                        <ul class="space-y-2 text-sm text-slate-300 mb-6 grid grid-cols-2 lg:grid-cols-1 gap-2">
+                            <li class="flex items-center gap-2"><i class="fas fa-check text-orange-400 text-xs"></i> Montage vidéo YouTube</li>
+                            <li class="flex items-center gap-2"><i class="fas fa-check text-orange-400 text-xs"></i> TikTok / Reels</li>
+                            <li class="flex items-center gap-2"><i class="fas fa-check text-orange-400 text-xs"></i> Intros animées</li>
+                            <li class="flex items-center gap-2"><i class="fas fa-check text-orange-400 text-xs"></i> Miniatures YouTube</li>
+                            <li class="flex items-center gap-2"><i class="fas fa-check text-orange-400 text-xs"></i> Publicités vidéo</li>
+                        </ul>
+                        <a href="https://wa.me/22999950409?text=Bonjour%20SkillLink,%20je%20souhaite%20commander%20un%20service%20de%20montage%20vid%C3%A9o%20YouTube,%20TikTok%20ou%20Reels." target="_blank" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-3 px-4 rounded-xl transition-colors inline-flex items-center justify-center gap-2 text-sm shadow-lg shadow-emerald-900/20">
+                            <i class="fab fa-whatsapp text-lg"></i> Commander sur WhatsApp
+                        </a>
+                    </div>
+                    <!-- Photo Gallery -->
+                    <div class="lg:w-2/3">
+                        <span class="text-xs font-semibold uppercase tracking-wider text-slate-500 block mb-3">Galerie Réalisations (5-10 images pro)</span>
+                        <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                            <div class="relative overflow-hidden rounded-xl aspect-[4/3] bg-slate-900 border border-slate-800 group">
+                                <img src="https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?q=80&w=400&auto=format&fit=crop" alt="Video Editing" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-3">
+                                    <p class="text-xs font-semibold text-white">Montage Vidéo YouTube</p>
+                                </div>
+                            </div>
+                            <div class="relative overflow-hidden rounded-xl aspect-[4/3] bg-slate-900 border border-slate-800 group">
+                                <img src="https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?q=80&w=400&auto=format&fit=crop" alt="TikTok Content" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-3">
+                                    <p class="text-xs font-semibold text-white">Contenu TikTok &amp; Reels</p>
+                                </div>
+                            </div>
+                            <div class="relative overflow-hidden rounded-xl aspect-[4/3] bg-slate-900 border border-slate-800 group">
+                                <img src="https://images.unsplash.com/photo-1622737133809-d95047b9e673?q=80&w=400&auto=format&fit=crop" alt="Motion Graphics" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-3">
+                                    <p class="text-xs font-semibold text-white">Intros Animées</p>
+                                </div>
+                            </div>
+                            <div class="relative overflow-hidden rounded-xl aspect-[4/3] bg-slate-900 border border-slate-800 group">
+                                <img src="https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?q=80&w=400&auto=format&fit=crop" alt="Audio Studio" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-3">
+                                    <p class="text-xs font-semibold text-white">Publicités Vidéo</p>
+                                </div>
+                            </div>
+                            <div class="relative overflow-hidden rounded-xl aspect-[4/3] bg-slate-900 border border-slate-800 group">
+                                <img src="https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?q=80&w=400&auto=format&fit=crop" alt="YouTube Thumbnail" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-3">
+                                    <p class="text-xs font-semibold text-white">Miniatures YouTube</p>
+                                </div>
+                            </div>
+                            <div class="relative overflow-hidden rounded-xl aspect-[4/3] bg-slate-900 border border-slate-800 group">
+                                <img src="https://images.unsplash.com/photo-1536240478700-b869070f9279?q=80&w=400&auto=format&fit=crop" alt="Cinematic Shoot" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-3">
+                                    <p class="text-xs font-semibold text-white">Production Audiovisuelle</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SERVICE 5: MARKETING DIGITAL -->
+            <div class="bg-brand-card rounded-2xl border border-slate-800 p-6 sm:p-8 shadow-xl">
+                <div class="lg:flex lg:gap-8 items-start">
+                    <div class="lg:w-1/3 mb-6 lg:mb-0">
+                        <div class="w-12 h-12 rounded-xl bg-red-500/10 border border-red-500/20 flex items-center justify-center text-red-400 text-xl mb-4">
+                            <i class="fas fa-bullhorn"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-3">Marketing Digital</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed mb-6">Boostez votre visibilité et convertissez vos abonnés en clients fidèles grâce à nos stratégies publicitaires ciblées.</p>
+                        <ul class="space-y-2 text-sm text-slate-300 mb-6 grid grid-cols-2 lg:grid-cols-1 gap-2">
+                            <li class="flex items-center gap-2"><i class="fas fa-check text-red-400 text-xs"></i> Community management</li>
+                            <li class="flex items-center gap-2"><i class="fas fa-check text-red-400 text-xs"></i> Facebook Ads</li>
+                            <li class="flex items-center gap-2"><i class="fas fa-check text-red-400 text-xs"></i> Instagram Ads</li>
+                            <li class="flex items-center gap-2"><i class="fas fa-check text-red-400 text-xs"></i> TikTok Ads</li>
+                            <li class="flex items-center gap-2"><i class="fas fa-check text-red-400 text-xs"></i> Gestion des réseaux sociaux</li>
+                        </ul>
+                        <a href="https://wa.me/22999950409?text=Bonjour%20SkillLink,%20je%20souhaite%20commander%20un%20service%20de%20Marketing%20Digital%20ou%20Facebook%20Ads." target="_blank" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-3 px-4 rounded-xl transition-colors inline-flex items-center justify-center gap-2 text-sm shadow-lg shadow-emerald-900/20">
+                            <i class="fab fa-whatsapp text-lg"></i> Commander sur WhatsApp
+                        </a>
+                    </div>
+                    <!-- Photo Gallery -->
+                    <div class="lg:w-2/3">
+                        <span class="text-xs font-semibold uppercase tracking-wider text-slate-500 block mb-3">Galerie Réalisations (5-10 images pro)</span>
+                        <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                            <div class="relative overflow-hidden rounded-xl aspect-[4/3] bg-slate-900 border border-slate-800 group">
+                                <img src="https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?q=80&w=400&auto=format&fit=crop" alt="Social Media Strategy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-3">
+                                    <p class="text-xs font-semibold text-white">Community Management</p>
+                                </div>
+                            </div>
+                            <div class="relative overflow-hidden rounded-xl aspect-[4/3] bg-slate-900 border border-slate-800 group">
+                                <img src="https://images.unsplash.com/photo-1563986768609-322da13575f3?q=80&w=400&auto=format&fit=crop" alt="Facebook Ads Dashboard" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-3">
+                                    <p class="text-xs font-semibold text-white">Facebook &amp; Instagram Ads</p>
+                                </div>
+                            </div>
+                            <div class="relative overflow-hidden rounded-xl aspect-[4/3] bg-slate-900 border border-slate-800 group">
+                                <img src="https://images.unsplash.com/photo-1611926653458-09294b3142bf?q=80&w=400&auto=format&fit=crop" alt="Instagram Marketing" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-3">
+                                    <p class="text-xs font-semibold text-white">TikTok Ads Stratégie</p>
+                                </div>
+                            </div>
+                            <div class="relative overflow-hidden rounded-xl aspect-[4/3] bg-slate-900 border border-slate-800 group">
+                                <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=400&auto=format&fit=crop" alt="Marketing Consult" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-3">
+                                    <p class="text-xs font-semibold text-white">Gestion de Réseaux</p>
+                                </div>
+                            </div>
+                            <div class="relative overflow-hidden rounded-xl aspect-[4/3] bg-slate-900 border border-slate-800 group">
+                                <img src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?q=80&w=400&auto=format&fit=crop" alt="Meeting" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-3">
+                                    <p class="text-xs font-semibold text-white">Stratégie Digitale Pro</p>
+                                </div>
+                            </div>
+                            <div class="relative overflow-hidden rounded-xl aspect-[4/3] bg-slate-900 border border-slate-800 group">
+                                <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=400&auto=format&fit=crop" alt="Ad Campaign" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-3">
+                                    <p class="text-xs font-semibold text-white">Analyse Metric Publicitaire</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SERVICE 6: IMPRESSION & SÉRIGRAPHIE -->
+            <div class="bg-brand-card rounded-2xl border border-slate-800 p-6 sm:p-8 shadow-xl">
+                <div class="lg:flex lg:gap-8 items-start">
+                    <div class="lg:w-1/3 mb-6 lg:mb-0">
+                        <div class="w-12 h-12 rounded-xl bg-yellow-500/10 border border-yellow-500/20 flex items-center justify-center text-yellow-400 text-xl mb-4">
+                            <i class="fas fa-print"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-3">Impression &amp; Sérigraphie</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed mb-6">Matérialisez votre marque sur des supports physiques de haute qualité (textiles, accessoires et grands formats).</p>
+                        <ul class="space-y-2 text-sm text-slate-300 mb-6 grid grid-cols-2 lg:grid-cols-1 gap-2">
+                            <li class="flex items-center gap-2"><i class="fas fa-check text-yellow-400 text-xs"></i> Impression textile</li>
+                            <li class="flex items-center gap-2"><i class="fas fa-check text-yellow-400 text-xs"></i> T-shirts personnalisés</li>
+                            <li class="flex items-center gap-2"><i class="fas fa-check text-yellow-400 text-xs"></i> Casquettes</li>
+                            <li class="flex items-center gap-2"><i class="fas fa-check text-yellow-400 text-xs"></i> Banderoles</li>
+                            <li class="flex items-center gap-2"><i class="fas fa-check text-yellow-400 text-xs"></i> Stickers</li>
+                        </ul>
+                        <a href="https://wa.me/22999950409?text=Bonjour%20SkillLink,%20je%20souhaite%20commander%20un%20service%20d'impression%20textile%20ou%20de%20t-shirts%20personnalis%C3%A9s." target="_blank" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-3 px-4 rounded-xl transition-colors inline-flex items-center justify-center gap-2 text-sm shadow-lg shadow-emerald-900/20">
+                            <i class="fab fa-whatsapp text-lg"></i> Commander sur WhatsApp
+                        </a>
+                    </div>
+                    <!-- Photo Gallery -->
+                    <div class="lg:w-2/3">
+                        <span class="text-xs font-semibold uppercase tracking-wider text-slate-500 block mb-3">Galerie Réalisations (5-10 images pro)</span>
+                        <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                            <div class="relative overflow-hidden rounded-xl aspect-[4/3] bg-slate-900 border border-slate-800 group">
+                                <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=400&auto=format&fit=crop" alt="Textile Print" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-3">
+                                    <p class="text-xs font-semibold text-white">Impression Textile HD</p>
+                                </div>
+                            </div>
+                            <div class="relative overflow-hidden rounded-xl aspect-[4/3] bg-slate-900 border border-slate-800 group">
+                                <img src="https://images.unsplash.com/photo-1588850561407-ed78c282e89b?q=80&w=400&auto=format&fit=crop" alt="Caps" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-3">
+                                    <p class="text-xs font-semibold text-white">T-shirts &amp; Casquettes Pro</p>
+                                </div>
+                            </div>
+                            <div class="relative overflow-hidden rounded-xl aspect-[4/3] bg-slate-900 border border-slate-800 group">
+                                <img src="https://images.unsplash.com/photo-1521485950395-bcfb50e4c318?q=80&w=400&auto=format&fit=crop" alt="Prints" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-3">
+                                    <p class="text-xs font-semibold text-white">Banderoles Extérieures</p>
+                                </div>
+                            </div>
+                            <div class="relative overflow-hidden rounded-xl aspect-[4/3] bg-slate-900 border border-slate-800 group">
+                                <img src="https://images.unsplash.com/photo-1562157873-818bc0726f68?q=80&w=400&auto=format&fit=crop" alt="Clothing" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-3">
+                                    <p class="text-xs font-semibold text-white">Sérigraphie Fine</p>
+                                </div>
+                            </div>
+                            <div class="relative overflow-hidden rounded-xl aspect-[4/3] bg-slate-900 border border-slate-800 group">
+                                <img src="https://images.unsplash.com/photo-1513346204612-2120179be6a8?q=80&w=400&auto=format&fit=crop" alt="Merchandise" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-3">
+                                    <p class="text-xs font-semibold text-white">Stickers &amp; Autocollants</p>
+                                </div>
+                            </div>
+                            <div class="relative overflow-hidden rounded-xl aspect-[4/3] bg-slate-900 border border-slate-800 group">
+                                <img src="https://images.unsplash.com/photo-1572945281861-68b48b175454?q=80&w=400&auto=format&fit=crop" alt="Industrial Print" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-3">
+                                    <p class="text-xs font-semibold text-white">Supports Publicitaires</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Why Choose Us -->
+    <section id="apropos" class="py-20 bg-slate-950 border-t border-slate-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-white mb-3">Pourquoi choisir SkillLink ?</h2>
+                <p class="text-slate-400">Une structure unique pour piloter l'intégralité de vos projets numériques.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+                <div class="p-6 bg-brand-card/50 border border-slate-800 rounded-xl">
+                    <div class="w-12 h-12 bg-brand-blue/10 rounded-full flex items-center justify-center text-brand-blue mx-auto mb-4 text-xl"><i class="fas fa-bolt"></i></div>
+                    <h4 class="text-lg font-semibold text-white mb-2">Rapidité d'Exécution</h4>
+                    <p class="text-slate-400 text-sm">Nous respectons scrupuleusement les délais annoncés pour chaque livraison.</p>
+                </div>
+                <div class="p-6 bg-brand-card/50 border border-slate-800 rounded-xl">
+                    <div class="w-12 h-12 bg-emerald-500/10 rounded-full flex items-center justify-center text-emerald-400 mx-auto mb-4 text-xl"><i class="fas fa-shield-alt"></i></div>
+                    <h4 class="text-lg font-semibold text-white mb-2">Qualité Professionnelle</h4>
+                    <p class="text-slate-400 text-sm">Chaque élément visuel ou technique passe par un contrôle qualité rigoureux.</p>
+                </div>
+                <div class="p-6 bg-brand-card/50 border border-slate-800 rounded-xl">
+                    <div class="w-12 h-12 bg-purple-500/10 rounded-full flex items-center justify-center text-purple-400 mx-auto mb-4 text-xl"><i class="fas fa-headset"></i></div>
+                    <h4 class="text-lg font-semibold text-white mb-2">Support WhatsApp 24/7</h4>
+                    <p class="text-slate-400 text-sm">Un suivi en temps réel et personnalisé par messagerie instantanée.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- =============================================
+         SECTION : NOS PROJETS
+         =============================================
+         POUR AJOUTER UN PROJET :
+         1. Copiez un bloc "projet-card" ci-dessous
+         2. Remplacez src="..." par l'URL ou le chemin local de votre photo
+         3. Remplacez href="#" par le lien de votre projet (site, Behance, Drive...)
+         4. Modifiez le titre, la catégorie et la description
+         5. Changez data-category="..." pour le filtre (design / dev / bureautique / audiovisuel / marketing / serigraphy / all)
+    ============================================= -->
+    <section id="projets" class="py-24 border-t border-slate-900 bg-slate-950">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-14">
+                <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold bg-brand-blue/10 text-brand-blue border border-brand-blue/20 mb-5 tracking-wider uppercase">
+                    <i class="fas fa-folder-open text-xs"></i> Portfolio
+                </span>
+                <h2 class="text-3xl font-bold text-white tracking-tight sm:text-4xl mb-4">Nos Projets Réalisés</h2>
+                <p class="text-slate-400 max-w-xl mx-auto">Découvrez une sélection de nos meilleures réalisations pour nos clients à travers différents domaines.</p>
+            </div>
+
+            <!-- Filtres par catégorie -->
+            <div class="flex flex-wrap justify-center gap-3 mb-12" id="projet-filtres">
+                <button onclick="filtrerProjets('all')" class="filtre-btn active-filtre px-5 py-2 rounded-full text-sm font-semibold transition-all border border-brand-blue bg-brand-blue text-white" data-filtre="all">
+                    Tous les projets
+                </button>
+                <button onclick="filtrerProjets('design')" class="filtre-btn px-5 py-2 rounded-full text-sm font-semibold transition-all border border-slate-700 text-slate-400 hover:text-white hover:border-slate-500 bg-brand-card" data-filtre="design">
+                    <i class="fas fa-paint-brush mr-1 text-purple-400"></i> Design
+                </button>
+                <button onclick="filtrerProjets('dev')" class="filtre-btn px-5 py-2 rounded-full text-sm font-semibold transition-all border border-slate-700 text-slate-400 hover:text-white hover:border-slate-500 bg-brand-card" data-filtre="dev">
+                    <i class="fas fa-code mr-1 text-cyan-400"></i> Développement
+                </button>
+                <button onclick="filtrerProjets('bureautique')" class="filtre-btn px-5 py-2 rounded-full text-sm font-semibold transition-all border border-slate-700 text-slate-400 hover:text-white hover:border-slate-500 bg-brand-card" data-filtre="bureautique">
+                    <i class="fas fa-briefcase mr-1 text-blue-400"></i> Bureautique
+                </button>
+                <button onclick="filtrerProjets('audiovisuel')" class="filtre-btn px-5 py-2 rounded-full text-sm font-semibold transition-all border border-slate-700 text-slate-400 hover:text-white hover:border-slate-500 bg-brand-card" data-filtre="audiovisuel">
+                    <i class="fas fa-video mr-1 text-orange-400"></i> Audiovisuel
+                </button>
+                <button onclick="filtrerProjets('marketing')" class="filtre-btn px-5 py-2 rounded-full text-sm font-semibold transition-all border border-slate-700 text-slate-400 hover:text-white hover:border-slate-500 bg-brand-card" data-filtre="marketing">
+                    <i class="fas fa-bullhorn mr-1 text-red-400"></i> Marketing
+                </button>
+                <button onclick="filtrerProjets('serigraphy')" class="filtre-btn px-5 py-2 rounded-full text-sm font-semibold transition-all border border-slate-700 text-slate-400 hover:text-white hover:border-slate-500 bg-brand-card" data-filtre="serigraphy">
+                    <i class="fas fa-print mr-1 text-yellow-400"></i> Sérigraphie
+                </button>
+            </div>
+
+            <!-- Grille des projets -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="projets-grille">
+
+                <!-- ========== PROJET 1 ========== -->
+                <!-- MODIFIEZ : data-category, src image, href lien, titre, catégorie, description -->
+                <div class="projet-card group" data-category="design">
+                    <div class="bg-brand-card border border-slate-800 rounded-2xl overflow-hidden shadow-xl transition-all duration-300 group-hover:-translate-y-1 group-hover:border-slate-600 group-hover:shadow-2xl">
+                        <!-- IMAGE DU PROJET — remplacez src par votre photo -->
+                        <div class="relative overflow-hidden aspect-[16/10]">
+                            <img src="https://images.unsplash.com/photo-1626785774573-4b799315345d?q=80&w=600&auto=format&fit=crop"
+                                 alt="Logo Design Client"
+                                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            <div class="absolute top-3 left-3">
+                                <span class="px-2.5 py-1 rounded-full text-xs font-semibold bg-purple-500/80 text-white backdrop-blur-sm">Design</span>
+                            </div>
+                        </div>
+                        <!-- INFOS DU PROJET -->
+                        <div class="p-5">
+                            <h3 class="text-white font-bold text-lg mb-1">Logo & Identité Visuelle</h3>
+                            <p class="text-slate-400 text-sm mb-4">Création d'un logo moderne et d'une charte graphique complète pour une startup locale.</p>
+                            <!-- LIEN DU PROJET — remplacez # par votre lien (Behance, Drive, site...) -->
+                            <a href="#" target="_blank" class="inline-flex items-center gap-2 text-brand-blue hover:text-white text-sm font-semibold transition-colors group/link">
+                                Voir le projet <i class="fas fa-arrow-right text-xs group-hover/link:translate-x-1 transition-transform"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ========== PROJET 2 ========== -->
+                <div class="projet-card group" data-category="dev">
+                    <div class="bg-brand-card border border-slate-800 rounded-2xl overflow-hidden shadow-xl transition-all duration-300 group-hover:-translate-y-1 group-hover:border-slate-600 group-hover:shadow-2xl">
+                        <div class="relative overflow-hidden aspect-[16/10]">
+                            <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=600&auto=format&fit=crop"
+                                 alt="Site Web Vitrine"
+                                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            <div class="absolute top-3 left-3">
+                                <span class="px-2.5 py-1 rounded-full text-xs font-semibold bg-cyan-500/80 text-white backdrop-blur-sm">Développement</span>
+                            </div>
+                        </div>
+                        <div class="p-5">
+                            <h3 class="text-white font-bold text-lg mb-1">Site Web Vitrine</h3>
+                            <p class="text-slate-400 text-sm mb-4">Développement d'un site vitrine responsive pour une PME béninoise avec formulaire de contact.</p>
+                            <a href="#" target="_blank" class="inline-flex items-center gap-2 text-brand-blue hover:text-white text-sm font-semibold transition-colors group/link">
+                                Voir le projet <i class="fas fa-arrow-right text-xs group-hover/link:translate-x-1 transition-transform"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ========== PROJET 3 ========== -->
+                <div class="projet-card group" data-category="bureautique">
+                    <div class="bg-brand-card border border-slate-800 rounded-2xl overflow-hidden shadow-xl transition-all duration-300 group-hover:-translate-y-1 group-hover:border-slate-600 group-hover:shadow-2xl">
+                        <div class="relative overflow-hidden aspect-[16/10]">
+                            <img src="https://images.unsplash.com/photo-1586281380349-632531db7ed4?q=80&w=600&auto=format&fit=crop"
+                                 alt="CV Professionnel"
+                                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            <div class="absolute top-3 left-3">
+                                <span class="px-2.5 py-1 rounded-full text-xs font-semibold bg-blue-500/80 text-white backdrop-blur-sm">Bureautique</span>
+                            </div>
+                        </div>
+                        <div class="p-5">
+                            <h3 class="text-white font-bold text-lg mb-1">CV Professionnel</h3>
+                            <p class="text-slate-400 text-sm mb-4">Conception et mise en page d'un CV ATS-friendly pour un cadre du secteur financier.</p>
+                            <a href="#" target="_blank" class="inline-flex items-center gap-2 text-brand-blue hover:text-white text-sm font-semibold transition-colors group/link">
+                                Voir le projet <i class="fas fa-arrow-right text-xs group-hover/link:translate-x-1 transition-transform"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ========== PROJET 4 ========== -->
+                <div class="projet-card group" data-category="audiovisuel">
+                    <div class="bg-brand-card border border-slate-800 rounded-2xl overflow-hidden shadow-xl transition-all duration-300 group-hover:-translate-y-1 group-hover:border-slate-600 group-hover:shadow-2xl">
+                        <div class="relative overflow-hidden aspect-[16/10]">
+                            <img src="https://images.unsplash.com/photo-1574717024453-354056b39400?q=80&w=600&auto=format&fit=crop"
+                                 alt="Montage Vidéo"
+                                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            <div class="absolute top-3 left-3">
+                                <span class="px-2.5 py-1 rounded-full text-xs font-semibold bg-orange-500/80 text-white backdrop-blur-sm">Audiovisuel</span>
+                            </div>
+                            <!-- Icône Play pour vidéo -->
+                            <div class="absolute inset-0 flex items-center justify-center">
+                                <div class="w-14 h-14 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center border-2 border-white/40 group-hover:scale-110 transition-transform">
+                                    <i class="fas fa-play text-white text-lg ml-1"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-5">
+                            <h3 class="text-white font-bold text-lg mb-1">Montage Vidéo Publicitaire</h3>
+                            <p class="text-slate-400 text-sm mb-4">Production et montage d'une vidéo promotionnelle pour les réseaux sociaux d'une boutique.</p>
+                            <!-- Pour un lien vidéo YouTube/TikTok/Drive, remplacez # -->
+                            <a href="#" target="_blank" class="inline-flex items-center gap-2 text-brand-blue hover:text-white text-sm font-semibold transition-colors group/link">
+                                Voir la vidéo <i class="fas fa-play text-xs group-hover/link:translate-x-1 transition-transform"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ========== PROJET 5 ========== -->
+                <div class="projet-card group" data-category="marketing">
+                    <div class="bg-brand-card border border-slate-800 rounded-2xl overflow-hidden shadow-xl transition-all duration-300 group-hover:-translate-y-1 group-hover:border-slate-600 group-hover:shadow-2xl">
+                        <div class="relative overflow-hidden aspect-[16/10]">
+                            <img src="https://images.unsplash.com/photo-1563986768609-322da13575f3?q=80&w=600&auto=format&fit=crop"
+                                 alt="Campagne Ads"
+                                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            <div class="absolute top-3 left-3">
+                                <span class="px-2.5 py-1 rounded-full text-xs font-semibold bg-red-500/80 text-white backdrop-blur-sm">Marketing</span>
+                            </div>
+                        </div>
+                        <div class="p-5">
+                            <h3 class="text-white font-bold text-lg mb-1">Campagne Facebook Ads</h3>
+                            <p class="text-slate-400 text-sm mb-4">Gestion d'une campagne publicitaire Facebook & Instagram avec +300% de portée en 30 jours.</p>
+                            <a href="#" target="_blank" class="inline-flex items-center gap-2 text-brand-blue hover:text-white text-sm font-semibold transition-colors group/link">
+                                Voir le projet <i class="fas fa-arrow-right text-xs group-hover/link:translate-x-1 transition-transform"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ========== PROJET 6 ========== -->
+                <div class="projet-card group" data-category="serigraphy">
+                    <div class="bg-brand-card border border-slate-800 rounded-2xl overflow-hidden shadow-xl transition-all duration-300 group-hover:-translate-y-1 group-hover:border-slate-600 group-hover:shadow-2xl">
+                        <div class="relative overflow-hidden aspect-[16/10]">
+                            <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=600&auto=format&fit=crop"
+                                 alt="T-shirts Sérigraphiés"
+                                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            <div class="absolute top-3 left-3">
+                                <span class="px-2.5 py-1 rounded-full text-xs font-semibold bg-yellow-500/80 text-white backdrop-blur-sm">Sérigraphie</span>
+                            </div>
+                        </div>
+                        <div class="p-5">
+                            <h3 class="text-white font-bold text-lg mb-1">T-shirts Personnalisés</h3>
+                            <p class="text-slate-400 text-sm mb-4">Impression de 50 t-shirts personnalisés pour l'événement annuel d'une association étudiante.</p>
+                            <a href="#" target="_blank" class="inline-flex items-center gap-2 text-brand-blue hover:text-white text-sm font-semibold transition-colors group/link">
+                                Voir le projet <i class="fas fa-arrow-right text-xs group-hover/link:translate-x-1 transition-transform"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ============================================================
+                     AJOUTEZ VOS PROCHAINS PROJETS ICI — copiez le bloc ci-dessous
+                     et modifiez les valeurs entre les commentaires MODIFIEZ
+                ============================================================ -->
+                <!--
+                <div class="projet-card group" data-category="MODIFIEZ: design | dev | bureautique | audiovisuel | marketing | serigraphy">
+                    <div class="bg-brand-card border border-slate-800 rounded-2xl overflow-hidden shadow-xl transition-all duration-300 group-hover:-translate-y-1 group-hover:border-slate-600">
+                        <div class="relative overflow-hidden aspect-[16/10]">
+                            <img src="MODIFIEZ: URL ou chemin de votre photo"
+                                 alt="MODIFIEZ: description de l'image"
+                                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            <div class="absolute top-3 left-3">
+                                <span class="px-2.5 py-1 rounded-full text-xs font-semibold bg-brand-blue/80 text-white backdrop-blur-sm">MODIFIEZ: Catégorie</span>
+                            </div>
+                        </div>
+                        <div class="p-5">
+                            <h3 class="text-white font-bold text-lg mb-1">MODIFIEZ: Titre du projet</h3>
+                            <p class="text-slate-400 text-sm mb-4">MODIFIEZ: Description courte du projet réalisé.</p>
+                            <a href="MODIFIEZ: votre lien" target="_blank" class="inline-flex items-center gap-2 text-brand-blue hover:text-white text-sm font-semibold transition-colors group/link">
+                                Voir le projet <i class="fas fa-arrow-right text-xs group-hover/link:translate-x-1 transition-transform"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                -->
+
+            </div>
+
+            <!-- CTA bas de section -->
+            <div class="text-center mt-14">
+                <p class="text-slate-400 mb-5">Vous avez un projet en tête ? Parlons-en dès maintenant.</p>
+                <a href="https://wa.me/22999950409?text=Bonjour%20SkillLink,%20j%27ai%20vu%20vos%20projets%20et%20j%27aimerais%20discuter%20d%27un%20projet%20similaire." target="_blank"
+                   class="inline-flex items-center gap-2 bg-brand-blue hover:bg-blue-600 text-white font-bold px-8 py-4 rounded-xl transition-all duration-300 shadow-xl shadow-brand-blue/25">
+                    <i class="fab fa-whatsapp text-xl"></i> Lancer mon projet sur WhatsApp
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Script de filtrage des projets -->
+    <script>
+        function filtrerProjets(categorie) {
+            // Mettre à jour les boutons
+            document.querySelectorAll('.filtre-btn').forEach(btn => {
+                btn.classList.remove('active-filtre', 'bg-brand-blue', 'text-white', 'border-brand-blue');
+                btn.classList.add('text-slate-400', 'border-slate-700', 'bg-brand-card');
+            });
+            const btnActif = document.querySelector(`[data-filtre="${categorie}"]`);
+            if (btnActif) {
+                btnActif.classList.add('active-filtre', 'bg-brand-blue', 'text-white', 'border-brand-blue');
+                btnActif.classList.remove('text-slate-400', 'border-slate-700', 'bg-brand-card');
+            }
+
+            // Filtrer les projets avec animation
+            document.querySelectorAll('.projet-card').forEach(card => {
+                const cat = card.getAttribute('data-category');
+                if (categorie === 'all' || cat === categorie) {
+                    card.style.display = 'block';
+                    card.style.animation = 'fadeInCard 0.35s ease forwards';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // Animation d'entrée des cartes
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes fadeInCard {
+                from { opacity: 0; transform: translateY(12px); }
+                to   { opacity: 1; transform: translateY(0); }
+            }
+            .projet-card { animation: fadeInCard 0.35s ease forwards; }
+        `;
+        document.head.appendChild(style);
+    </script>
+
+    <!-- Page / Section Contact -->
+
+    <section id="contact" class="py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-t border-slate-900">
+        <div class="text-center mb-16">
+            <h2 class="text-3xl font-bold text-white tracking-tight sm:text-4xl mb-4">Contactez l'Agence</h2>
+            <p class="text-slate-400 max-w-xl mx-auto">Une question ou un projet en tête ? Écrivez-nous directement ou utilisez le formulaire ci-dessous.</p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+            <!-- Info Sidebar -->
+            <div class="lg:col-span-5 bg-brand-card border border-slate-800 rounded-2xl p-6 sm:p-8 space-y-6">
+                <h3 class="text-xl font-bold text-white mb-2">Nos Coordonnées</h3>
+                <p class="text-sm text-slate-400 leading-relaxed">Nous sommes disponibles pour vous accompagner immédiatement dans vos processus de transformation digitale ou de secrétariat d'études.</p>
+                
+                <div class="space-y-4">
+                    <div class="flex items-center gap-4">
+                        <div class="w-10 h-10 rounded-xl bg-brand-blue/10 border border-brand-blue/20 flex items-center justify-center text-brand-blue">
+                            <i class="fab fa-whatsapp text-lg"></i>
+                        </div>
+                        <div>
+                            <span class="block text-xs text-slate-500 font-medium">WhatsApp Direct</span>
+                            <a href="https://wa.me/22999950409" target="_blank" class="text-sm font-semibold text-white hover:text-brand-blue transition-colors">+229 99950409</a>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center gap-4">
+                        <div class="w-10 h-10 rounded-xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center text-purple-400">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div>
+                            <span class="block text-xs text-slate-500 font-medium">Email Support</span>
+                            <span class="text-sm font-semibold text-white">contact@skilllink.agency</span>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center gap-4">
+                        <div class="w-10 h-10 rounded-xl bg-yellow-500/10 border border-yellow-500/20 flex items-center justify-center text-yellow-400">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div>
+                            <span class="block text-xs text-slate-500 font-medium">Localisation</span>
+                            <span class="text-sm font-semibold text-white">Bénin / Accessible à distance</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pt-4 border-t border-slate-800">
+                    <a href="https://wa.me/22999950409?text=Bonjour%20SkillLink,%20je%20souhaite%20prendre%20un%20rendez-vous%20pour%20un%20projet." target="_blank" class="w-full bg-slate-800 hover:bg-slate-700 text-white font-bold py-3 px-4 rounded-xl transition-colors inline-flex items-center justify-center gap-2 text-sm border border-slate-700">
+                        <i class="fas fa-calendar-alt"></i> Prendre un rendez-vous
+                    </a>
+                </div>
+            </div>
+
+            <!-- Contact Form -->
+            <div class="lg:col-span-7 bg-brand-card border border-slate-800 rounded-2xl p-6 sm:p-8">
+                <form onsubmit="event.preventDefault(); alert('Merci pour votre message ! En mode test local sur mobile, vous pouvez aussi cliquer sur le bouton WhatsApp pour une réponse immédiate.');" class="space-y-5">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2">Votre Nom</label>
+                            <input type="text" required placeholder="Ex: Jean" class="w-full bg-slate-900 border border-slate-800 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-brand-blue transition-colors">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2">Votre Numéro</label>
+                            <input type="tel" placeholder="Ex: +229 XX XX XX XX" class="w-full bg-slate-900 border border-slate-800 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-brand-blue transition-colors">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2">Service Souhaité</label>
+                        <select class="w-full bg-slate-900 border border-slate-800 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-brand-blue transition-colors">
+                            <option>Bureautique &amp; Études (CV, Mémoire...)</option>
+                            <option>Design Graphique (Logo, Flyer...)</option>
+                            <option>Développement Digital (Site Web, App...)</option>
+                            <option>Audiovisuel (Montage Vidéo, TikTok...)</option>
+                            <option>Marketing Digital (Facebook Ads...)</option>
+                            <option>Impression &amp; Sérigraphie</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2">Détails de votre projet</label>
+                        <textarea rows="4" required placeholder="Décrivez brièvement votre besoin..." class="w-full bg-slate-900 border border-slate-800 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-brand-blue transition-colors"></textarea>
+                    </div>
+
+                    <button type="submit" class="w-full bg-brand-blue hover:bg-blue-600 text-white font-bold py-4 px-4 rounded-xl transition-all duration-300 shadow-lg shadow-brand-blue/20 text-sm flex items-center justify-center gap-2">
+                        <i class="fas fa-paper-plane"></i> Envoyer la demande
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Area -->
+    <footer class="bg-brand-dark py-12 border-t border-slate-900 text-center text-sm text-slate-500">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-4">
+            <div class="flex justify-center items-center space-x-2">
+                <div class="w-6 h-6 rounded-full border border-brand-blue flex items-center justify-center font-bold text-xs text-brand-blue">S</div>
+                <span class="font-bold text-white tracking-wider">SKLLK - SkillLink</span>
+            </div>
+            <p class="text-slate-400">Ton Need, Notre Mission.</p>
+            <p class="text-xs">&copy; 2026 SkillLink. Tous droits réservés. Design premium entièrement consolidé.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
